@@ -37,8 +37,16 @@ public class EjemploAutomovil {
         nissan.detalle();
         */
         //Imprimimos el método, nombreObjeto.nombreMetodo();
-        System.out.println(ford.detalle());
-        System.out.println(nissan.detalle());
+        System.out.println(ford.verDetalle());
+        System.out.println(nissan.verDetalle());
+        System.out.println(ford.acelerar(3000)); //Al estar pasando el parametro rpm en el metodo
+        //Se requiere de un numero int, ya que es el argumento que el metodo pide
+        System.out.println(ford.frenar());
+        System.out.println(nissan.acelerarFrenar(2000));
+        System.out.println("Km por litro = " + nissan.calcularConsumo(300, 0.60f)); //El metodo
+        //debe recibir el parametro int, y el float del porcentaje de 0 a 1 en decimal
+        System.out.println("Km por litro = " + ford.calcularConsumo(300, 60));//Al colocar un
+        //entero en el segundo parametro, la maquina virtual buscara el metodo que reciba los dos parametros del tipo entero
     }
 
 }
