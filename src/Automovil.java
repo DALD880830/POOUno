@@ -1,10 +1,64 @@
 public class Automovil {
 
+    /*
     String fabricante; //Atributo de la clase //Si no lleva private, por defecto es public
     String modelo;
     String color = "rojo"; //Definimos un valor por feceto para todos los objetos Automovil
     double cilindrada; //Los atributos se esciben en minusculas y las clases en mayusculas
     int capacidadTanque = 40; //Para determinar el rendimiento en el metodo de calcularConsumo, se requiere de asignar esta variable
+    */
+
+    //Los atributos de la clase deben ser privados y se deben acceder y modificar por medio de métodos
+    private String fabricante;
+    private String modelo;
+    private String color = "rojo";
+    private double cilindrada;
+    private int capacidadTanque = 40;
+
+
+    //Metodos para la lectura de atributos
+
+    public String leerFabricante(){
+        return this.fabricante;
+    }
+    public String leerModelo(){
+        return this.modelo;
+    }
+    public String leerColor(){
+        return this.color;
+    }
+    public double leerCilindrada(){
+        return this.cilindrada;
+    }
+    public int leerCapacidadTanque(){
+        return this.capacidadTanque;
+    }
+
+
+    //Métodos para la asignacion de valores
+
+    public void asignarFabricante(String fabricante){ //Es void porque no hace mas que actualizar el valor
+        //con this.fabricante hacemos referencia al atributo, despues damos el valor que se recibe por argumento
+        this.fabricante = fabricante;
+    }
+
+    public void asignarModelo(String modelo){
+        this.modelo = modelo;
+    }
+
+    public void asignarColor(String color){
+        this.color = color;
+    }
+
+    public void asignarCilindrada(double cilindrada){
+        this.cilindrada = cilindrada;
+    }
+
+    public void asignarCaoacidadTanque(int capacidadTanque){
+        this.capacidadTanque = capacidadTanque;
+    }
+
+
 
     //Metodos o funciones del objeto
     /*
