@@ -15,46 +15,148 @@ public class Automovil {
     private double cilindrada;
     private int capacidadTanque = 40;
 
+    private int id; //Parte en 0
+
+
+    public static final Integer VELOCIDAD_MAXIMA_CARRETERA = 120; //Atributo final, es un atributo que no puede ser
+    //modificado, es una constante que no se puede modificar //Se escribe con mayusculas, las palabras separadas por guion bajo
+    public final static int VELOCIDAD_MAXIMA_CIUDAD = 80; //Los modificadores de public final static pueden ir en cualquier orden
+
+    public final static String COLOR_ROJO = "Rojo";
+    public final static String COLOR_AMARILLO = "Amarillo";
+    public final static String COLOR_AZUL = "Azul";
+    public final static String COLOR_BLANCO = "Blanco";
+    public final static String COLOR_GRIS = "Gris";
+
+
+
+    private static int ultimoId; //Parte en 0
+
+    private static int capacidadTanqueEstatico = 30;
+
+    private static String colorPatente = "Naranja"; //Atributo estático, es una variable que estara en todos los objetos Automovil por igual
+    //Un metodo estatico debe ser para un atributo estatico
+
+
+    public static String getColorPatente() {
+        return colorPatente;
+    }
+    public static void setColorPatente(String colorPatente) { //this. no se puede usar en contexto estatico
+        Automovil.colorPatente = colorPatente; //En vez del this. usamos el nombre de la clase
+    }
+
+
+
+    public static int getCapacidadTanqueEstatico() {
+        return capacidadTanqueEstatico;
+    }
+    public static void setCapacidadTanqueEstatico(int capacidadTanqueEstatico) {
+        Automovil.capacidadTanqueEstatico = capacidadTanqueEstatico;
+    }
+
+
+    public Automovil(){ //Se crea la primera instancia vale cero, incrementa a 1 y lo asigna
+        this.id = ++ultimoId; //Cada que se cree el objeto incrementamos el ultimoId y se lo asignamos a id
+    }
+
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+
+
+    //Implementamos un constructor de manera explicita, si no se implementa, por default hay uno vacio que se implementa que no tiene parametros ni argumentos
+    public Automovil(String fabricante, String modelo){ //Debe llevar el mismo nombre de la clase, le pasamos fabricante y
+        //modelo por argumento entre los parentesis
+        this(); //Para poder incrementar el ID, este this() invoca al metodo Automovil que cuenta con los id
+        this.fabricante = fabricante; //Con this. hacemos re
+        this.modelo = modelo;
+    }
+
+    /*
+    public Automovil(){ //Podemos crear un segundo constructor vacio
+    }
+    //Tambien se puede generar este constructor con el click derecho, generate, constructor y ahí definimos que
+    // argumentos o parametros son lo que queremos, o si deseamos que el constructor este vacio
+    */
+
+
+    public Automovil(String fabricante, String modelo, String color){
+        //this.fabricante = fabricante; //quitamos estos dos y los pasamos a un solo this, esto hará que este constructor
+        //this.modelo = modelo; //invoque al constructor que solo tiene esos dos parametros
+        this(fabricante, modelo);
+        this.color = color;
+    }
+
+    public Automovil(String fabricante, String modelo, String color, double cilindrada){
+        //this.fabricante = fabricante; //quitamos estos tres y los pasamos a un solo this
+        //this.modelo = modelo; //esto hará que este constructor invoque al constructor que solo
+        //this.color = color; // tiene esos tres parametros
+        this(fabricante, modelo, color);
+        this.cilindrada = cilindrada;
+    }
+
+    public Automovil(String fabricante, String modelo, String color, double cilindrada, int capacidadTanque){
+        //this.fabricante = fabricante; //quitamos estos cuatro y los pasamos a un solo this
+        //this.modelo = modelo; //esto hará que este constructor invoque al constructor que
+        //this.color = color; // tiene esos cuatro parametros
+        //this.cilindrada = cilindrada;
+        this(fabricante, modelo, color, cilindrada);
+        this.capacidadTanque = capacidadTanque;
+    }
+
 
     //Metodos para la lectura de atributos
 
-    public String leerFabricante(){
+    //A las clases get y set se les conoce como POJO (Plain Old Java Object) Objeto plano de java, objeto
+    //simple que solo representa datos, se pueden generar de forma automatica con clock derecho, click en generate
+    //click en getter and setter, y se marcan los atributos a los que se le generará el getter o setter o ambos
+
+    //public String leerFabricante(){ //Se debe utilizar la nomenclatura para obtener... get
+    public String getFabricante(){ //Usando la nomenclatura get
         return this.fabricante;
     }
-    public String leerModelo(){
+    public String getModelo(){
         return this.modelo;
     }
-    public String leerColor(){
+    public String getColor(){
         return this.color;
     }
-    public double leerCilindrada(){
+    public double getCilindrada(){
         return this.cilindrada;
     }
-    public int leerCapacidadTanque(){
+    public int getCapacidadTanque(){
         return this.capacidadTanque;
     }
 
 
     //Métodos para la asignacion de valores
 
-    public void asignarFabricante(String fabricante){ //Es void porque no hace mas que actualizar el valor
-        //con this.fabricante hacemos referencia al atributo, despues damos el valor que se recibe por argumento
+    //public void asignarFabricante(String fabricante){ //Es void porque no hace mas que actualizar el valor
+    //con this.fabricante hacemos referencia al atributo, despues damos el valor que se recibe por argumento
+    //Se debe usar la nomenclatura para modificar... set
+    public void setFabricante(String fabricante){ //Usando la nomenclatura set
         this.fabricante = fabricante;
     }
 
-    public void asignarModelo(String modelo){
+    public void setModelo(String modelo){
         this.modelo = modelo;
     }
 
-    public void asignarColor(String color){
+    public void setColor(String color){
         this.color = color;
     }
 
-    public void asignarCilindrada(double cilindrada){
+    public void setCilindrada(double cilindrada){
         this.cilindrada = cilindrada;
     }
 
-    public void asignarCaoacidadTanque(int capacidadTanque){
+    public void setCaoacidadTanque(int capacidadTanque){
         this.capacidadTanque = capacidadTanque;
     }
 
@@ -73,11 +175,14 @@ public class Automovil {
 
     public String verDetalle(){ //Este metodo retorna un String
         //En ves de imprimir los datos, los concatenamos y los retornamos como un String
-        return "auto.fabricante = " + this.fabricante + //AString concatenado
+        return "auto.iD = " + this.id +
+                "\nauto.fabricante = " + this.fabricante + //AString concatenado
                 "\nauto.modelo = " + this.modelo +
                 "\nauto.color = " + this.color +
-                "\nauto.cilindrada = " + this.cilindrada;
-        }
+                "\nauto.cilindrada = " + this.cilindrada +
+                "\nauto.patenteColor = " + colorPatente; //Como es estatico no se debe colocar this. //Se puede colocar
+        // solo el nombre del atributo o la clase punto atributo Automovil.colorPatente
+    }
 
     /*public String detalle(){ //Este metodo retorna un String
         StringBuilder sb = new StringBuilder(); //StringBuilder se usa para concatenar una gran cantidad de
@@ -121,4 +226,42 @@ public class Automovil {
         //entre 100 y colocar que este 100 es un float
     }
 
+
+
+    public static float calcularConsumoEstatico(int km, int porcentajeGasolina){ //Metodo estatico, debe tener un atributo
+        return km/(capacidadTanqueEstatico * (porcentajeGasolina/100f)); //estatico, y el atributo NO se referencia con this.
+    }
+
+
+
+    @Override //Override le indica al compilador que estamos sobreescribiendo un metodo //Click derecho, generate, override method, equals
+    public boolean equals(Object obj) { //pasamos el objeto para comparar
+
+        if (! (obj instanceof  Automovil)){ //Si el objeto no es instancia o no es del tipo de Automovil, retorna false
+            return false; //Si no son del mismo tipo de objeto, solo retorna false y ya no hace la comprobacion
+        }
+        if (this == obj){ //Coparamos por referencia, si se trata del mismo objeto es true
+            return true;
+        }
+        Automovil a = (Automovil) obj; //Le damos un nombre cualquiera a Automovil, en este caso a, hacemos un CAST
+        //convertimos el objeto a tipo Automovil, comparamos el objeto que viene de afuera con esta clase, lo comparamos con el this
+        return (this.fabricante != null && this.modelo != null //Agregamos que fabricante y modelo sean diferente de null
+                //para evitar que marque error, al intenetar comparar dos objetos Automovil, pero uno de ellos con valores nulos
+                && this.fabricante.equals(a.getFabricante()) && this.modelo.equals(getModelo()));
+        //comparamos el objeto por fabricante, es del tipo string y se requiere del metodo equals para comparar
+        //comparamos el fabricante del objeto a obteniendo el fabricante con getFabricante y tambien comparamos con el
+        //modelo, si ambos son iguales, entonces ambos objetos son iguales
+    }
+
+    @Override
+    public String toString() { //Sobreescribimos el metodo toString, ahora imprime el nombre del objeto con todos sus atributos
+        return "Automovil{" +
+                "ID='" + id + '\'' +
+                "fabricante='" + fabricante + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", color='" + color + '\'' +
+                ", cilindrada=" + cilindrada +
+                ", capacidadTanque=" + capacidadTanque +
+                '}';
+    }
 }

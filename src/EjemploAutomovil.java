@@ -2,7 +2,7 @@ public class EjemploAutomovil {
 
     public static void main(String[] args) {
 
-        Automovil ford = new Automovil(); //Creamos el nuevo objeto Automovil
+        //Automovil ford = new Automovil(); //Creamos el nuevo objeto Automovil
         /*
         ford.fabricante = "Ford"; //Los valores se pueden modificar desde aquí
         ford.modelo = "Mustang"; //Asignamos los datos
@@ -10,13 +10,24 @@ public class EjemploAutomovil {
         ford.color = "azul"; //A pesar de que el color ya estaba definido, si lo definimos aquí, se modifica el valor
         */
         //Accedemos a los atributos mediante metodos
-        ford.asignarFabricante("Ford");
-        ford.asignarModelo("Mustang");
-        ford.asignarCilindrada(2.0);
-        ford.asignarColor("azul");
+        /*
+        ford.setFabricante("Ford");
+        ford.setModelo("Mustang");
+        ford.setCilindrada(2.0);
+        ford.setColor("azul");
+        */
 
 
-        Automovil nissan = new Automovil();
+        //Al crear un constructor de manera explicita, como no esta vacio, marca error en los argumentos que definimos en
+        //el constructor, por cosiguiente, esos setter, deben pasarse por argumento para evitar los errores
+        Automovil ford = new Automovil("Ford", "Mustang"); //Insertamos fabricante y mustang usando
+        // el nuevo constructor, los constructores solo se pueden invocar con el new
+        ford.setCilindrada(2.0); //Cilidrada y color deben seguirse insertando de esta forma, ya que no estan definidos en
+        ford.setColor("azul"); //el constructor que realizamos de manera explicita
+
+
+
+        //Automovil nissan = new Automovil();
         /*
         nissan.fabricante = "Nissan"; //Los valores se pueden modificar desde aquí
         nissan.modelo = "Tsuru"; //Asignamos los datos
@@ -24,13 +35,38 @@ public class EjemploAutomovil {
         nissan.color = "negro"; //A pesar de que el color ya estaba definido, si lo definimos aquí, se modifica el valor
         */
         //Accedemos a los atributos mediante metodos
-        nissan.asignarFabricante("Nissan");
-        nissan.asignarModelo("Tsuru");
-        nissan.asignarCilindrada(1.5);
-        nissan.asignarColor("negro");
+        /*
+        nissan.setFabricante("Nissan");
+        nissan.setModelo("Tsuru");
+        nissan.setCilindrada(1.5);
+        nissan.setColor("negro");
+        */
+
+
+        Automovil nissan = new Automovil("Nissan", "Tsuru", "negro", 1.5); //Usando el nuevo constructor
+
+
+        //Podemos crear un nuevo Objeto, con los parametros vacios, para ello, debemos
+        //crear un constructor que permita tener los parametros vacios
+        Automovil kia = new Automovil("KIA", "Rio", "Gris", 2.5, 50);
+
+
+        //Comparamos el objeto nissan con el objeto nissan
+        Automovil nissan2 = new Automovil("Nissan", "Tsuru", "negro", 1.5);
+        System.out.println("nissan es igual a nissan2 con ==: " + (nissan == nissan2)); //Es falso, porque a pesar de que tiene los mismos
+        System.out.println("nissan es igual a nissan2 con equals: " + (nissan.equals(nissan2))); // parametros, es un objeto diferente
+        //al existir el metodo, entonces compara los valores e indica si son iguales o son distintos
+
+
+        System.out.println(nissan); //Esta es la forma implicita del objeto convertirlo a String, por defecto, imprime
+        //El nombre de la clase concatenado con un @ y con un hexadecimal, el cual es convertido desde un hashcode
+        //Imprime Automovil@13969fbe
+        System.out.println(nissan.toString()); //Esta es la forma explicita, es igual al de arriba //Al sobreescribir el
+        //metodo, ahora imprimirá lo que nosotros indiquemos en el metodo
+
 
         //Si queremos acceder a alguno de los atributos, accedemos por medio del metodo leer
-        System.out.println("Fabricante del primer coche = " + ford.leerFabricante());
+        System.out.println("Fabricante del primer coche = " + ford.getFabricante());
 
 /*
         System.out.println("ford.fabricante = " + ford.fabricante); //Cuando se imprime y obtiene el valor, si no esta asignado, por defecto es null
@@ -62,6 +98,8 @@ public class EjemploAutomovil {
         //debe recibir el parametro int, y el float del porcentaje de 0 a 1 en decimal
         System.out.println("Km por litro = " + ford.calcularConsumo(300, 60));//Al colocar un
         //entero en el segundo parametro, la maquina virtual buscara el metodo que reciba los dos parametros del tipo entero
+
+        System.out.println(kia.verDetalle());
     }
 
 }
