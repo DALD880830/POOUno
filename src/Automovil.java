@@ -11,9 +11,26 @@ public class Automovil {
     //Los atributos de la clase deben ser privados y se deben acceder y modificar por medio de métodos
     private String fabricante;
     private String modelo;
-    private String color = "rojo";
+    //private String color = "rojo"; //Para acceder a los colores del enum, String se cambia por Color, que es el
+    //private String color = COLOR_GRIS; //nombre de la clase de enumeradores
     private double cilindrada;
     private int capacidadTanque = 40;
+
+
+
+    private TipoAutomovil tipo; //Atributo del enumerador de la clase TipoAutomovil
+
+    public TipoAutomovil getTipo() { //Obtenemos el tipo automovil
+        return tipo;
+    }
+
+    public void setTipo(TipoAutomovil tipo) { //Establecemos un valor al tipo automovil
+        this.tipo = tipo;
+    }
+
+
+
+    private Color color = Color.GRIS; //De esta forma accedemos al color gris en la clase de enumeradores
 
     private int id; //Parte en 0
 
@@ -34,15 +51,23 @@ public class Automovil {
 
     private static int capacidadTanqueEstatico = 30;
 
-    private static String colorPatente = "Naranja"; //Atributo estático, es una variable que estara en todos los objetos Automovil por igual
+    //private static String colorPatente = "Naranja"; //Atributo estático, es una variable que estara en todos los objetos Automovil por igual
     //Un metodo estatico debe ser para un atributo estatico
+    private static Color colorPatente = Color.NARANJA; //Cambiamos el atributo estatico, para usar el enumerados
 
 
-    public static String getColorPatente() {
+    //public static String getColorPatente() {return colorPatente;}
+    public static Color getColorPatente() {
         return colorPatente;
-    }
+    } //Cambiamos el String por Color del enumerador
+
+    /*
     public static void setColorPatente(String colorPatente) { //this. no se puede usar en contexto estatico
-        Automovil.colorPatente = colorPatente; //En vez del this. usamos el nombre de la clase
+        String.colorPatente = colorPatente; //En vez del this. usamos el nombre de la clase
+    }
+    */
+    public static void setColorPatente(Color colorPatente) { //Cambiamos el String por Color del enumerador
+        Automovil.colorPatente = colorPatente;
     }
 
 
@@ -86,14 +111,16 @@ public class Automovil {
     */
 
 
-    public Automovil(String fabricante, String modelo, String color){
+    //public Automovil(String fabricante, String modelo, String color){ //Cambiamos el String color por Color color
+    public Automovil(String fabricante, String modelo, Color color){
         //this.fabricante = fabricante; //quitamos estos dos y los pasamos a un solo this, esto hará que este constructor
         //this.modelo = modelo; //invoque al constructor que solo tiene esos dos parametros
         this(fabricante, modelo);
         this.color = color;
     }
 
-    public Automovil(String fabricante, String modelo, String color, double cilindrada){
+    //public Automovil(String fabricante, String modelo, String color, double cilindrada){
+    public Automovil(String fabricante, String modelo, Color color, double cilindrada){
         //this.fabricante = fabricante; //quitamos estos tres y los pasamos a un solo this
         //this.modelo = modelo; //esto hará que este constructor invoque al constructor que solo
         //this.color = color; // tiene esos tres parametros
@@ -101,7 +128,8 @@ public class Automovil {
         this.cilindrada = cilindrada;
     }
 
-    public Automovil(String fabricante, String modelo, String color, double cilindrada, int capacidadTanque){
+    //public Automovil(String fabricante, String modelo, String color, double cilindrada, int capacidadTanque){
+    public Automovil(String fabricante, String modelo, Color color, double cilindrada, int capacidadTanque){
         //this.fabricante = fabricante; //quitamos estos cuatro y los pasamos a un solo this
         //this.modelo = modelo; //esto hará que este constructor invoque al constructor que
         //this.color = color; // tiene esos cuatro parametros
@@ -124,7 +152,8 @@ public class Automovil {
     public String getModelo(){
         return this.modelo;
     }
-    public String getColor(){
+    //public String getColor(){
+    public Color getColor(){ //Cambiamos el String por Color del enumerador
         return this.color;
     }
     public double getCilindrada(){
@@ -148,7 +177,8 @@ public class Automovil {
         this.modelo = modelo;
     }
 
-    public void setColor(String color){
+    //public void setColor(String color){
+    public void setColor(Color color){ //Cambiamos el String por Color del enumerador
         this.color = color;
     }
 
@@ -178,8 +208,11 @@ public class Automovil {
         return "auto.iD = " + this.id +
                 "\nauto.fabricante = " + this.fabricante + //AString concatenado
                 "\nauto.modelo = " + this.modelo +
-                "\nauto.color = " + this.color +
+                "\nauto.tipo = " + this.getTipo().getDescripcion() + //Agregamos el tipo, utilizando el enumerador TipoAutomovil
                 "\nauto.cilindrada = " + this.cilindrada +
+                //"\nauto.color = " + this.color.getColor() + //Obtenemos el color del enumerador con getColor()
+                //"\nauto.patenteColor = " + colorPatente.getColor(); //Obtenemos el color del enumerador con getColor()
+                "\nauto.cilindrada = " + this.color +
                 "\nauto.patenteColor = " + colorPatente; //Como es estatico no se debe colocar this. //Se puede colocar
         // solo el nombre del atributo o la clase punto atributo Automovil.colorPatente
     }

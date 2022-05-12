@@ -23,7 +23,8 @@ public class EjemploAutomovil {
         Automovil ford = new Automovil("Ford", "Mustang"); //Insertamos fabricante y mustang usando
         // el nuevo constructor, los constructores solo se pueden invocar con el new
         ford.setCilindrada(2.0); //Cilidrada y color deben seguirse insertando de esta forma, ya que no estan definidos en
-        ford.setColor("azul"); //el constructor que realizamos de manera explicita
+        //ford.setColor("azul"); //el constructor que realizamos de manera explicita
+        ford.setColor(Color.AZUL); //Cambiamos el String que habia por el atributo del enumerador con Colo.AZUL
 
 
 
@@ -43,16 +44,20 @@ public class EjemploAutomovil {
         */
 
 
-        Automovil nissan = new Automovil("Nissan", "Tsuru", "negro", 1.5); //Usando el nuevo constructor
-
+        Automovil nissan = new Automovil("Nissan", "Tsuru",
+                //        "negro", 1.5); //Usando el nuevo constructor
+                Color.NEGRO, 1.5); //Cambiamos el String por el enumerador Color
 
         //Podemos crear un nuevo Objeto, con los parametros vacios, para ello, debemos
         //crear un constructor que permita tener los parametros vacios
-        Automovil kia = new Automovil("KIA", "Rio", "Gris", 2.5, 50);
-
+        Automovil kia = new Automovil("KIA", "Rio",
+                //        "Gris", 2.5, 50);
+                Color.GRIS, 2.5, 50); //Cambiamos el String por el enumerador Color
 
         //Comparamos el objeto nissan con el objeto nissan
-        Automovil nissan2 = new Automovil("Nissan", "Tsuru", "negro", 1.5);
+        Automovil nissan2 = new Automovil("Nissan", "Tsuru",
+                //        "negro", 1.5);
+                Color.NEGRO, 1.5); //Cambiamos el String por el enumerador Color
         System.out.println("nissan es igual a nissan2 con ==: " + (nissan == nissan2)); //Es falso, porque a pesar de que tiene los mismos
         System.out.println("nissan es igual a nissan2 con equals: " + (nissan.equals(nissan2))); // parametros, es un objeto diferente
         //al existir el metodo, entonces compara los valores e indica si son iguales o son distintos
