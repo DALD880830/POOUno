@@ -20,10 +20,18 @@ public class EjemploAutomovil {
 
         //Al crear un constructor de manera explicita, como no esta vacio, marca error en los argumentos que definimos en
         //el constructor, por cosiguiente, esos setter, deben pasarse por argumento para evitar los errores
+        Motor motorFord = new Motor(2.0, TipoMotor.GASOLINA); //Creamos el objeto Motor, el cual recibe la cilindrada y el TipoMotor
+        Tanque tanqueFord = new Tanque(); //Creamos el objeto tanqueFord, no lleva nada como argumento porque por default es 40, sin embargo, si se puede modificar
         Automovil ford = new Automovil("Ford", "Mustang"); //Insertamos fabricante y mustang usando
         // el nuevo constructor, los constructores solo se pueden invocar con el new
-        ford.setCilindrada(2.0); //Cilidrada y color deben seguirse insertando de esta forma, ya que no estan definidos en
+
+        ford.setMotor(motorFord); //Pasamos por argumento al set el objeto motorFord, que contiene la cilindrada
+        ford.setTanque(tanqueFord); //Asignamos a setTanque el objeto creado tanqueFord
+
+        //Al cambiar el atributo cilindrada a una relacion con una clase, se debe cambiar por lo de la clase
+        //ford.setCilindrada(2.0); //Cilidrada y color deben seguirse insertando de esta forma, ya que no estan definidos en
         //ford.setColor("azul"); //el constructor que realizamos de manera explicita
+
         ford.setColor(Color.AZUL); //Cambiamos el String que habia por el atributo del enumerador con Colo.AZUL
 
 
@@ -43,21 +51,32 @@ public class EjemploAutomovil {
         nissan.setColor("negro");
         */
 
-
+        Motor motorNissan = new Motor(1.5, TipoMotor.GASOLINA); //Creamos el objeto Motor, el cual recibe la cilindrada y el TipoMotor
+        Tanque tanqueNissan = new Tanque(50); //Creamos el objeto tanqueFord, puede no llevar nada como argumento porque por default es 40, sin embargo, si se puede modificar
         Automovil nissan = new Automovil("Nissan", "Tsuru",
                 //        "negro", 1.5); //Usando el nuevo constructor
-                Color.NEGRO, 1.5); //Cambiamos el String por el enumerador Color
+                Color.NEGRO, motorNissan); //Cambiamos el String por el enumerador Color y Al cambiar el atributo a una relacion con una clase, se debe cambiar por lo de la clase
+        //         1.5); //Cambiamos el
+        nissan.setTanque(tanqueNissan); //Asignamos a setTanque el objeto creado tanqueNissan
 
         //Podemos crear un nuevo Objeto, con los parametros vacios, para ello, debemos
         //crear un constructor que permita tener los parametros vacios
+        Motor motorKia = new Motor(2.5, TipoMotor.GASOLINA); //Creamos el objeto Motor, el cual recibe la cilindrada y el TipoMotor
+        Tanque tanqueKia = new Tanque(); //Creamos el objeto Tanque, recibe la capacidad del tanque, por defecto esta en 40, sin embargo, podemos pasar por argumento otro valor
+
         Automovil kia = new Automovil("KIA", "Rio",
                 //        "Gris", 2.5, 50);
-                Color.GRIS, 2.5, 50); //Cambiamos el String por el enumerador Color
+                Color.GRIS, motorKia, tanqueKia); //Cambiamos el String por el enumerador Color y Al cambiar el atributo a una relacion con una clase, se debe cambiar por lo de la clase
+        //        2.5, 50);
 
         //Comparamos el objeto nissan con el objeto nissan
+
+        Motor motorNissan2 = new Motor(1.5, TipoMotor.GASOLINA); //Creamos el objeto Motor, el cual recibe la cilindrada y el TipoMotor
         Automovil nissan2 = new Automovil("Nissan", "Tsuru",
                 //        "negro", 1.5);
-                Color.NEGRO, 1.5); //Cambiamos el String por el enumerador Color
+                Color.NEGRO, motorNissan2); //Cambiamos el String por el enumerador Color y Al cambiar el atributo a una relacion con una clase, se debe cambiar por lo de la clase
+        //        1.5);
+
         System.out.println("nissan es igual a nissan2 con ==: " + (nissan == nissan2)); //Es falso, porque a pesar de que tiene los mismos
         System.out.println("nissan es igual a nissan2 con equals: " + (nissan.equals(nissan2))); // parametros, es un objeto diferente
         //al existir el metodo, entonces compara los valores e indica si son iguales o son distintos

@@ -5,19 +5,22 @@ public class EjemploAutomovilEnum {
         Automovil.setCapacidadTanqueEstatico(45); //Con el metodo set, podemos cambiar el valor estatico del atributo static
         //Solo que cambia el valor para todos los objetos
 
+        Motor motorFord = new Motor(2.0, TipoMotor.GASOLINA); //Creamos el objeto Motor, el cual recibe la cilindrada y el TipoMotor
         Automovil ford = new Automovil("Ford", "Mustang"); //Insertamos fabricante y mustang usando
         // el nuevo constructor, los constructores solo se pueden invocar con el new
-        ford.setCilindrada(2.0); //Cilidrada y color deben seguirse insertando de esta forma, ya que no estan definidos en
+        //ford.setCilindrada(2.0); //Cilidrada y color deben seguirse insertando de esta forma, ya que no estan definidos en
         //el constructor que realizamos de manera explicita
 
         ford.setColor(Color.AZUL); //Para acceder a la clase de enumeradores, se coloca el nombre de la clase punto y el nombre del enumerado
         ford.setTipo(TipoAutomovil.CONVERTIBLE); //Establecemos que este automovil es de tipo convertible, usando el enumerador TipoAutomovil
+        ford.setMotor(motorFord); //Pasamos por argumento al set el objeto motorFord, que contiene la cilindrada
 
 
 
+        Motor motorNissan = new Motor(1.5, TipoMotor.GASOLINA); //Creamos el objeto Motor, el cual recibe la cilindrada y el TipoMotor
         Automovil nissan = new Automovil("Nissan", "Tsuru",
                 //Automovil.COLOR_ROJO, 1.5); //Usando el nuevo constructor
-                Color.ROJO, 1.5); //Cambiamos Automovi.COLOR_ROJO por el enumerador Color.ROJO
+                Color.ROJO, motorNissan); //Cambiamos Automovil.COLOR_ROJO por el enumerador Color.ROJO y el valor del motor 1.5 por el nuevo objeto creado
         nissan.setTipo(TipoAutomovil.SEDAN); //Establecemos que este automovil es de tipo sedan, usando el enumerador TipoAutomovil
 
 
@@ -74,6 +77,16 @@ public class EjemploAutomovilEnum {
                     System.out.println("Esta en realidad es una camioneta");
             case STATION_WAGON ->
                     System.out.println("Este es un coche enorme en el que cabe maletas grandes");
+        }
+
+        TipoAutomovil [] tipos = TipoAutomovil.values(); //Metodo getValues, retorna un arreglo del numerador con las constantes
+
+        for (TipoAutomovil ta: tipos) {
+            System.out.println(ta + "=> " + ta.name() + ", " +  //ta.name() corresponde al nombre original de la constante
+                    ta.getNombre() + ", " +
+                    ta.getDescripcion() + ", " +
+                    ta.getNumeroPuerta());
+            System.out.println();
         }
 
     }
